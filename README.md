@@ -7,12 +7,15 @@
    ##### then you can connect to this url to see the api swagger docs `{dockerhost}:8080/api-docs` and you can test them
  
  
-  // Kindly note that if you want to run the integration tests & start the app locally,
+  #### Environments updates:
+     -  Kindly note that if you want to run the integration tests & start the app locally,
         you will need to update
          the following property in docker-compose file for the kafka broker to your docker host : 
          KAFKA_ADVERTISED_HOST_NAME
          in my case it will be : KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100 
          as i use the old docker on vm for windows
+     - And also your will need to update the testing peroperty file located at src\test\resources\kafka_test.properties
+         and set your docker host as well. *
 
 2. Run integration test for testing setup `mvn clean test`
    
