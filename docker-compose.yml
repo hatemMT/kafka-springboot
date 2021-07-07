@@ -1,0 +1,27 @@
+version: "3.4"
+
+services:
+  app:
+    build:
+      context: .
+    image: com.workmotion/app-img
+    ports:
+      - "8080:8080"
+
+  kafka-cli:
+    image: conitasgmbh/kafka-cli
+    command: [ "/bin/sh", "-c", "while true; do sleep 10; done" ]
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_CREATE_TOPICS: "employees:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_PORT: 9092
